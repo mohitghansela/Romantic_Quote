@@ -169,14 +169,85 @@
     @keyframes fadeUp   { from{opacity:0;transform:translateY(18px)}  to{opacity:1;transform:translateY(0)} }
 
     @media(max-width:480px){ .main-card{padding:26px 18px;} }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px;
+      padding: 14px 32px;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      animation: fadeDown 1s ease forwards .1s;
+      opacity: 0;
+    }
+    .header-icon { font-size: 1.5rem; }
+    .header-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--ac, #ffb6d9);
+      text-shadow: 0 0 18px var(--ac, #ffb6d9);
+    }
+    .header-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .55;
+      margin-top: 2px;
+    }
+    .header-inner { text-align: center; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 24px;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid rgba(255,255,255,.1);
+      animation: fadeUp 1s ease forwards 1.9s;
+      opacity: 0;
+    }
+    .footer-text {
+      font-family: 'Lato', sans-serif;
+      font-size: .78rem;
+      font-weight: 300;
+      letter-spacing: .1em;
+      opacity: .65;
+    }
+    .footer-dev {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ac, #ffb6d9);
+      text-shadow: 0 0 10px var(--ac, #ffb6d9);
+    }
+    .footer-heart { font-size: .95rem; animation: pulse3d 2s ease-in-out infinite; }
   </style>
 </head>
 <body>
 
+<!-- ── HEADER ── -->
+<header class="site-header" id="siteHeader">
+  <span class="header-icon">💖</span>
+  <div class="header-inner">
+    <div class="header-title">Daily Love</div>
+    <div class="header-subtitle">A quote for every heartbeat</div>
+  </div>
+  <span class="header-icon">💖</span>
+</header>
+
 <div class="stars" id="stars"></div>
 <div class="hearts-bg" id="heartsContainer"></div>
 
-<div class="container">
+<div class="container" style="margin-top:72px; margin-bottom:52px;">
   <div class="top-label" id="topLabel">✨ Today's Love ✨</div>
 
   <div class="main-card" id="mainCard">
@@ -197,6 +268,14 @@
 
   <div class="bottom-hearts" id="bottomHearts">💕 💗 💕</div>
 </div>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer" id="siteFooter">
+  <span class="footer-heart">💗</span>
+  <span class="footer-text">by the author of</span>
+  <span class="footer-dev">'Wish to be like you'</span>
+  <span class="footer-heart">💗</span>
+</footer>
 
 <script>
 // ── THEMES: Pink & Red palette rotating through 7 days ──
@@ -353,6 +432,12 @@ btn.style.background = T.btn;
 btn.style.boxShadow  = `0 4px 28px ${T.shadow}`;
 
 document.getElementById('mainCard').classList.add(T.anim);
+
+// Update header & footer accent colors
+document.getElementById('siteHeader').querySelector('.header-title').style.color = T.ac;
+document.getElementById('siteHeader').querySelector('.header-title').style.textShadow = `0 0 18px ${T.ac}`;
+document.getElementById('siteFooter').querySelector('.footer-dev').style.color = T.ac;
+document.getElementById('siteFooter').querySelector('.footer-dev').style.textShadow = `0 0 10px ${T.ac}`;
 
 // ── QUOTE DISPLAY ──
 function renderQuote(idx) {
